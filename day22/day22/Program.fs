@@ -10,7 +10,6 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
-    let decks = readDecks "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
-    let message = from "F#" // Call the function
-    printfn "Hello world %s" message
+    let state = readGameState "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
+    printfn "Game state: %A" state
     0 // return an integer exit code

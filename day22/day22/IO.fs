@@ -21,7 +21,7 @@ let private readFile (filePath:String) = seq {
         yield sr.ReadLine ()
 }
 
-let readDecks (filePath:String) =
+let readGameState (filePath:String) : GameState =
     let input = readFile(filePath)
     let acc (lists: List<List<String>>) (s:String) : List<List<String>> =
         match lists, s with
@@ -36,5 +36,4 @@ let readDecks (filePath:String) =
                 |> List.map (fun (rd:RawDeck) -> rd.toDeck ())
                 |> List.rev
                 |> List.toArray 
-    printfn "%A" split 
-        
+    GameState(split.[0],split.[1])
