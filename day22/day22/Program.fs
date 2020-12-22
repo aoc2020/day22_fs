@@ -1,31 +1,21 @@
-﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
+﻿open day22.Game1
+open day22.Game2
+open day22.IO
 
-open System
-open day22.IO 
+let task1 (game:Game1) =
+    let game = game.playGame ()
+    let winner = game.getWinner ()
+    printfn "Answer 1: Player %d, Score: %d" winner.Player (winner.score ())
 
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
-
-let task1 () =
-    let state = readAsGame1 "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
-    printfn "Game state: %A" state
-    printfn "Round 1: %A" (state.playRound ())
-    let final = state.playGame ()
-    let winner = final.getWinner ()
-    printfn "Final: %A" final
-    printfn "Score: %d" (winner.score ())
-    0 // return an integer exit code
-
-let task2 () = 
-    let state = readAsGame2 "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
-    let final = state.playGame ()
-    let winner = final.getWinner ()
-    printfn "Final: %A" final
-    printfn "Score: %d" (winner.score ())
-    0 // return an integer exit code
+let task2 (game:Game2) =      
+    let game = game.playGame ()
+    let winner = game.getWinner ()
+    printfn "Answer 2: Player %d, Score: %d" winner.Player (winner.score ())
 
 [<EntryPoint>]
 let main argv =
-    task2 () 
-    0 // return an integer exit code
+    let decks = readDecks "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
+    let game1 = Game1(decks)
+    let game2 = Game2(decks)
+    task2 (game2) 
+    0
