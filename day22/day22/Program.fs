@@ -12,4 +12,9 @@ let from whom =
 let main argv =
     let state = readGameState "/Users/xeno/projects/aoc2020/day22_fs/input.txt"
     printfn "Game state: %A" state
+    printfn "Round 1: %A" (state.playRound ())
+    let final = state.playGame ()
+    let winner = final.getWinner ()
+    printfn "Final: %A" final
+    printfn "Score: %d" (winner.score ())
     0 // return an integer exit code
